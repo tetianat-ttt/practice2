@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mia’s Story – English Revision</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f6f7fb;--card:#fff;--tx:#1d2433;--mu:#5b6578;--ac:#3b6ef5;--ok:#1c8a4a;--okb:#e2f6ea;--bad:#c0392b;--badb:#fdeaea;--bd:#dde1ec}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151d;--card:#1b2030;--tx:#e8ebf4;--mu:#9aa3b8;--ac:#7b9cff;--ok:#5fd18a;--okb:#16301f;--bad:#ff8a7a;--badb:#3a1c1c;--bd:#2d3450}}
+:root[data-theme="dark"]{--bg:#12151d;--card:#1b2030;--tx:#e8ebf4;--mu:#9aa3b8;--ac:#7b9cff;--ok:#5fd18a;--okb:#16301f;--bad:#ff8a7a;--badb:#3a1c1c;--bd:#2d3450}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:18px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:760px;margin:0 auto;padding:16px}
+h1{font-size:28px;margin:8px 0 4px}h2{font-size:21px;margin:0 0 4px}
+.sub{color:var(--mu);margin:0 0 16px}
+section{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px;margin:16px 0}
+.in{color:var(--mu);margin:0 0 10px}
+ol{padding-left:26px;margin:8px 0}li{margin:9px 0;padding:3px 6px;border-radius:8px}
+select,input{font:inherit;color:var(--tx);background:var(--bg);border:1.5px solid var(--bd);border-radius:8px;padding:3px 6px;margin:0 3px;max-width:100%}
+input{width:9.5em}input.w{width:14em}
+select:focus,input:focus{outline:2px solid var(--ac)}
+li.ok{background:var(--okb)}li.bad{background:var(--badb)}
+.fix{display:block;color:var(--bad);font-size:15px}
+label.o{display:block;padding:5px 8px;border:1.5px solid var(--bd);border-radius:8px;margin:5px 0;cursor:pointer}
+label.o:has(input:checked){border-color:var(--ac)}
+label.o input{width:auto;margin-right:8px}
+button{font:inherit;background:var(--ac);color:#fff;border:0;border-radius:10px;padding:8px 16px;margin:6px 8px 0 0;cursor:pointer}
+button.g{background:transparent;color:var(--ac);border:1.5px solid var(--ac)}
+.sc{font-weight:700;margin-left:6px}
+table{border-collapse:collapse;margin:6px 0 10px}th,td{border:1px solid var(--bd);padding:4px 12px;text-align:center}
+.box{border:1.5px dashed var(--ac);border-radius:10px;padding:8px 12px;margin:8px 0;color:var(--mu);font-size:16px}
+#tot{position:sticky;top:env(safe-area-inset-top,0px);background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:6px 12px;font-weight:700;z-index:5}
+</style></head><body><main>
+<h1>Mia’s Story 📖</h1>
+<p class="sub">Meet Mia. Help her with her English! Easy first, then a bit harder. Check each part, then try again if you need.</p>
+<div id="tot">Score: 0</div>
+<div id="root"></div>
+</main>
+<script>
+const T={t:"cell"};
+const D=[
+{t:"1. Hello, I’m Mia!",i:"Mia is a new student. Choose am / is / are.",k:"g",o:["am","is","are"],q:[
+["Hello! I ___ Mia.","am"],["I ___ from Lviv.","am"],["I ___ 28 years old.","am"],["My brother ___ a doctor.","is"],["My parents ___ teachers.","are"],["We ___ a happy family.","are"],["My best friend ___ Oleh.","is"],["He ___ a student.","is"],["You ___ my teacher.","are"],["Oleh and I ___ friends.","are"],["It ___ a nice day today.","is"],["___ you from Ukraine?","are"]]},
+{t:"More To Be: Mia’s Party",i:"Mia’s friends are at a party. Choose am / is / are / am not / isn’t / aren’t.",k:"g",o:["am","is","are","am not","isn’t","aren’t"],q:[
+["Oleh ___ at home. He is at the party.","isn’t"],["I ___ tired. I feel great!","am not"],["Mia and Oleh ___ at the party.","are"],["The music ___ loud. I love it!","is"],["We ___ late. It is only 7 o’clock.","aren’t"],["___ you hungry? There is a lot of food.","are"],["___ Anna here? – No, she isn’t.","is"],["The pizza ___ cold. It is hot!","isn’t"],["Where ___ the toilet?","is"],["I ___ a teacher. I am a doctor.","am not"],["How old ___ your friends?","are"],["My friends ___ from Poland. They are from Ukraine.","aren’t"]]},
+{t:"Spot the Mistake: To Be",i:"Which sentence is correct?",k:"p",q:[
+["My name is Mia.","My name Mia."],["I am from Ukraine.","I from Ukraine."],["She is not a doctor.","She not is a doctor."],["Where are you from?","Where you are from?"],["They are my friends.","They is my friends."],["He is tired.","He are tired."],["How old are you?","How old you are?"],["I am not hungry.","I not am hungry."],["We aren’t at home.","We isn’t at home."],["Are they students?","Is they students?"],["Is your brother at work?","Are your brother at work?"]]},
+{t:"2. Mia’s Family and Things",i:"What have they got? Choose have got / has got / haven’t got / hasn’t got.",k:"g",o:["have got","has got","haven’t got","hasn’t got"],q:[
+["I ___ a small flat.","have got"],["My sister ___ two children.","has got"],["We ___ a big dog.","have got"],["My brother ___ a new car.","has got"],["My parents ___ a house in the village.","have got"],["You ___ a nice bag.","have got"],["Oleh ___ a laptop.","has got"],["The dog ___ four legs.","has got"],["Oleh and Mia ___ a cat.","have got"],["She ___ long hair.","has got"],["I ___ a car. I go by bus.","haven’t got"],["Anna ___ a brother. She is alone.","hasn’t got"]]},
+{t:"3. Mia’s Bag",i:"Mia packs for a trip. Write the plural. Watch the spelling!",k:"x",q:[
+["1 box → 2 ___","boxes"],["1 child → 2 ___","children"],["1 city → 2 ___","cities"],["1 man → 2 ___","men"],["1 bus → 2 ___","buses"],["1 baby → 2 ___","babies"],["1 woman → 2 ___","women"],["1 knife → 2 ___","knives"],["1 photo → 2 ___","photos"],["1 tooth → 2 ___","teeth"],["1 day → 2 ___","days"],["1 sandwich → 2 ___","sandwiches"]]},
+{t:"4. Mia’s Room",i:"Look at Mia’s room. Choose There is / There are / There isn’t / There aren’t.",k:"g",o:["There is","There are","There isn’t","There aren’t"],q:[
+["___ a bed in my room.","There is"],["___ two windows.","There are"],["___ a TV. I watch films on my laptop.","There isn’t"],["___ three books on the table.","There are"],["___ a lamp near the bed.","There is"],["___ any pictures on the wall.","There aren’t"],["___ some flowers on the desk.","There are"],["___ a cat under the bed!","There is"],["___ any chairs in the room.","There aren’t"],["___ four people in my family.","There are"]]},
+{t:"Mia’s Kitchen",i:"Look at Mia’s kitchen. Choose There is / There are / There isn’t / There aren’t / Is there / Are there.",h:"<div class='box'>fridge 1 · table 1 · chairs 4 · windows 2 · cups 3 · apples 5 · cat 1 · TV 0 · sofa 0 · bananas 0 · pictures 0</div>",k:"g",o:["There is","There are","There isn’t","There aren’t","Is there","Are there"],q:[
+["___ a fridge in the kitchen.","There is"],["___ four chairs.","There are"],["___ a TV.","There isn’t"],["___ any apples? – Yes, there are.","Are there"],["___ any bananas.","There aren’t"],["___ a sofa? – No, there isn’t.","Is there"],["___ three cups on the table.","There are"],["___ two windows.","There are"],["___ a cat under the table!","There is"],["___ any pictures on the wall.","There aren’t"],["___ a table in the kitchen? – Yes, there is.","Is there"],["___ eight chairs in the kitchen.","There aren’t"]]},
+{t:"Spot the Mistake: There Is / There Are",i:"Which sentence is correct?",k:"p",q:[
+["There are two cats in the garden.","There is two cats in the garden."],["There isn’t a bank here.","There not is a bank here."],["Is there a shop near here?","Are there a shop near here?"],["Are there any chairs?","Is there any chairs?"],["There aren’t any books.","There isn’t any books."],["There is a lamp on the table.","There are a lamp on the table."],["There are five people in my family.","There is five people in my family."],["Is there a park in your city?","Is there park in your city?"],["There is a window in my room.","Is a window in my room."],["There aren’t any pictures on the wall.","There no are pictures on the wall."]]},
+{t:"5. Mia’s Day",i:"Write the correct form of the verb. Careful with he / she / it: +s, +es, +ies!",k:"x",q:[
+["I (get up) ___ at 7 o’clock.","get up"],["My brother (work) ___ in a hospital.","works"],["We (have) ___ breakfast together.","have"],["Mia (go) ___ to work by bus.","goes"],["My parents (live) ___ in Lviv.","live"],["She (study) ___ English in the evening.","studies"],["They (watch) ___ TV after dinner.","watch"],["Oleh (finish) ___ work at 6.","finishes"],["You (speak) ___ English very well.","speak"],["Our dog (sleep) ___ all day.","sleeps"],["I (do) ___ my homework at night.","do"],["He (play) ___ football on Sunday.","plays"]]},
+{t:"6. Questions and Negatives",i:"Mia talks with Oleh. Choose do / does / don’t / doesn’t.",k:"g",o:["do","does","don’t","doesn’t"],q:[
+["I ___ like coffee.","don’t"],["Mia ___ drink tea in the evening.","doesn’t"],["___ you work on Saturday?","do"],["___ Oleh live in Kyiv?","does"],["We ___ have a car.","don’t"],["My sister ___ eat meat.","doesn’t"],["___ your parents speak English?","do"],["___ she study at university?","does"],["They ___ watch TV in the morning.","don’t"],["He ___ play the guitar.","doesn’t"],["Where ___ you live?","do"],["What time ___ the lesson start?","does"]]},
+{t:"Say No! Present Simple Negatives",i:"Write the negative form. Example: Mia (not drink) ___ tea. → doesn’t drink",k:"x",q:[
+["Oleh (not work) ___ on Sunday.","doesn’t work|does not work"],["I (not drink) ___ coffee at night.","don’t drink|do not drink"],["Mia (not eat) ___ meat.","doesn’t eat|does not eat"],["We (not watch) ___ TV in the morning.","don’t watch|do not watch"],["My dog (not like) ___ cats.","doesn’t like|does not like"],["They (not live) ___ in Kyiv.","don’t live|do not live"],["She (not go) ___ to work by car.","doesn’t go|does not go"],["You (not speak) ___ Polish.","don’t speak|do not speak"],["He (not have) ___ breakfast at home.","doesn’t have|does not have"],["My parents (not play) ___ tennis.","don’t play|do not play"],["Oleh (not study) ___ French.","doesn’t study|does not study"],["The shop (not open) ___ on Sunday.","doesn’t open|does not open"]]},
+{t:"Ask Me! Present Simple Questions",i:"Write the question start. Example: (you / like) ___ pizza? → do you like",k:"x",q:[
+["(you / like) ___ coffee?","do you like"],["(Oleh / live) ___ in Lviv?","does Oleh live"],["(they / speak) ___ English?","do they speak"],["(she / work) ___ in a bank?","does she work"],["(your sister / have) ___ a car?","does your sister have"],["Where (you / live) ___?","do you live"],["What time (Mia / get up) ___?","does Mia get up"],["What (they / eat) ___ for breakfast?","do they eat"],["(he / play) ___ football?","does he play"],["Where (your parents / work) ___?","do your parents work"],["What (you / do) ___ on Sunday?","do you do"]]},
+{t:"Spot the Mistake: Present Simple",i:"Which sentence is correct?",k:"p",q:[
+["My brother works in a bank.","My brother work in a bank."],["She doesn’t like tea.","She doesn’t likes tea."],["Does Oleh play football?","Does Oleh plays football?"],["I don’t have a car.","I doesn’t have a car."],["He studies English.","He studys English."],["They live in Lviv.","They lives in Lviv."],["Mia goes to work by bus.","Mia go to work by bus."],["My mother has breakfast at 7.","My mother haves breakfast at 7."],["Do your parents work?","Does your parents work?"],["What time does the lesson start?","What time do the lesson start?"]]},
+{t:"7. Mia’s Week",i:"Which sentence is correct? Look at the place of always, usually, often, sometimes, never.",k:"p",q:[
+["She is always late.","She always is late."],["I never drink coffee at night.","I drink never coffee at night."],["Oleh sometimes plays tennis.","Oleh plays sometimes tennis."],["We usually are at home on Sunday.","We are usually at home on Sunday."],["They often go to the cinema.","They go often to the cinema."],["My dog is never hungry.","My dog never is hungry."],["I always have breakfast at 8.","I have always breakfast at 8."],["She doesn’t often watch TV.","She often doesn’t watch TV."],["He always works on Monday.","He works always on Monday."],["You are sometimes tired after work.","You sometimes are tired after work."]].map(x=>x)},
+{t:"8. Who Can Do What?",i:"Look at the table. Choose can / can’t.",h:"<table><tr><th></th><th>swim</th><th>cook</th><th>drive</th><th>play guitar</th><th>ski</th><th>speak English</th></tr><tr><th>Mia</th><td>✔</td><td>✔</td><td>✘</td><td>✘</td><td>✘</td><td>✔</td></tr><tr><th>Oleh</th><td>✘</td><td>✘</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td></tr></table>",k:"g",o:["can","can’t"],q:[
+["Mia ___ swim.","can"],["Oleh ___ swim.","can’t"],["Mia ___ drive.","can’t"],["Oleh ___ drive.","can"],["Mia ___ play the guitar.","can’t"],["Oleh ___ cook.","can’t"],["Mia and Oleh ___ speak English.","can"],["Mia ___ ski.","can’t"],["Oleh ___ ski.","can"],["Can Mia cook? – Yes, she ___.","can"],["Can Oleh cook? – No, he ___.","can’t"]]},
+{t:"9. Mia’s English Test",i:"Final boss! One sentence is correct, one has a mistake. Choose the correct one. (All the grammar together!)",k:"p",q:[
+["I am 30 years old.","I have 30 years old."],["She has got two brothers.","She have got two brothers."],["There are three chairs in the kitchen.","There is three chairs in the kitchen."],["He can swim.","He can swims."],["She works in a bank.","She work in a bank."],["Does he like pizza?","Does he likes pizza?"],["I don’t speak French.","I no speak French."],["We are teachers.","We is teachers."],["Two children play in the park.","Two childs play in the park."],["My sister doesn’t drive.","My sister don’t drive."],["Can you cook?","Do you can cook?"],["It is cold today.","Is cold today."]]},
+{t:"10. Speaking: Now It’s Your Story!",i:"Part A. Complete your profile. Then tell it to your teacher.",k:"s",q:[
+["My name is ___.",0],["I am ___ years old.",0],["I am from ___.",0],["I have got ___.",0],["There are ___ people in my family.",0],["I usually ___ at ___ o’clock.",0],["I always ___ in the morning.",0],["I never ___ on Sunday.",0],["I can ___, but I can’t ___.",0]],
+f:"<p class='in'>Part B. Interview! Ask your teacher, then answer the same questions.</p><div class='box'>Answer with a full sentence. Don’t say only “yes” or “no”! Start like this: I have got… · There is / There are… · I usually / often / always / never… · My mother / My friend… · I can…</div><ol><li>Who is in your family? How old are they?</li><li>What have you got in your bag?</li><li>What is there in your room?</li><li>What do you do in the morning? Say 3 things.</li><li>What do you usually have for breakfast?</li><li>What does your mother (or father, or best friend) do every day?</li><li>What do you never do on Sunday? Why?</li><li>What is there in your kitchen? What isn’t there?</li><li>What can you cook? What can’t you do?</li><li>Where do you want to live? What is there near your home?</li></ol><div class='box'>Part C. Tell me about your best friend (or a person in your family). Say 6 sentences: name and age · where he / she is from · what he / she has got · what he / she does every day (use usually, often, sometimes, never) · what he / she can and can’t do.</div><div class='box'>Part D. Mia meets you at a party. Ask her 5 questions (Where…? What…? What time…? Have you got…? Can you…?). Your teacher is Mia. Then change roles!</div>"}
+];
+const shuf=a=>a.map(x=>[Math.random(),x]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
+const nm=s=>s.toLowerCase().replace(/[’`]/g,"'").replace(/\s+/g," ").trim();
+const root=document.getElementById("root"),tot=document.getElementById("tot");
+const secs=[];
+D.forEach((s,n)=>{
+ const sec=document.createElement("section");
+ sec.innerHTML=`<h2>${n+1}. ${s.t.replace(/^\d+\.\s*/,"")}</h2><p class="in">${s.i}</p>${s.h||""}`;
+ const ol=document.createElement("ol");const rows=[];
+ s.q.forEach((q,j)=>{
+  const li=document.createElement("li");
+  if(s.k=="p"){
+   shuf([[q[0],1],[q[1],0]]).forEach(([t,v])=>{const l=document.createElement("label");l.className="o";const r=document.createElement("input");r.type="radio";r.name="s"+n+"_"+j;r.value=v;l.append(r,t);li.append(l)});
+   rows.push({li,ok:()=>{const c=li.querySelector("input:checked");return c&&c.value=="1"},ans:q[0],done:()=>!!li.querySelector("input:checked")});
+  }else if(s.k=="s"){
+   q[0].split("___").forEach((p,i,a)=>{li.append(p);if(i<a.length-1){const f=document.createElement("input");f.className="w";f.autocomplete="off";li.append(f)}});
+  }else{
+   const [p0,p1]=q[0].split("___");let f;
+   if(s.o){f=document.createElement("select");f.innerHTML="<option value=''>…</option>"+s.o.map(o=>`<option>${o}</option>`).join("")}
+   else{f=document.createElement("input");f.autocomplete="off";f.autocapitalize="off";f.spellcheck=false}
+   li.append(p0,f,p1);
+   rows.push({li,ok:()=>q[1].split("|").map(nm).includes(nm(f.value)),ans:q[1].split("|")[0],done:()=>!!f.value.trim(),f});
+  }
+  ol.append(li);
+ });
+ sec.append(ol);
+ if(s.f){const d=document.createElement("div");d.innerHTML=s.f;sec.append(d)}
+ const sc=document.createElement("span");sc.className="sc";
+ const st={rows,sc,n:rows.length,got:0};
+ if(rows.length){
+  const b=document.createElement("button");b.textContent="Check ✓";
+  const r=document.createElement("button");r.textContent="Try again";r.className="g";
+  b.onclick=()=>{st.got=0;rows.forEach(x=>{x.li.classList.remove("ok","bad");x.li.querySelectorAll(".fix").forEach(e=>e.remove());if(x.ok()){x.li.classList.add("ok");st.got++}else{x.li.classList.add("bad");const e=document.createElement("span");e.className="fix";e.textContent=x.done()?"✘ "+x.ans:"Answer this one!";x.li.append(e)}});sc.textContent=st.got+" / "+st.n+(st.got==st.n?" 🎉":"");upd()};
+  r.onclick=()=>{st.got=0;rows.forEach(x=>{x.li.classList.remove("ok","bad");x.li.querySelectorAll(".fix").forEach(e=>e.remove());x.li.querySelectorAll("input[type=radio]").forEach(i=>i.checked=false);if(x.f)x.f.value=""});sc.textContent="";upd()};
+  sec.append(b,r,sc);
+ }
+ secs.push(st);root.append(sec);
+});
+function upd(){const g=secs.reduce((a,s)=>a+s.got,0),t=secs.reduce((a,s)=>a+s.n,0);tot.textContent="Score: "+g+" / "+t}
+upd();
+</script></body></html>
